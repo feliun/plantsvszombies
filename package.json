@@ -1,0 +1,15 @@
+{
+	"name": "plantsvszombies",
+	"version": "1.0.0",
+	"description": "An example of composing software using mixins",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha --reporter spec './tests/**/*.tests.js'",
+		"test-w": "mocha --reporter spec './tests/**/*.tests.js' -w"
+	},
+	"author": "Felipe Polo Ruiz <felipe.polo@gmail.com> (https://github.com/feliun)",
+	"devDependencies": {
+		"expect.js": "^0.3.1",
+		"mocha": "^5.2.0"
+	}
+}
