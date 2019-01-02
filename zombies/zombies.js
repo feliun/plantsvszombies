@@ -1,5 +1,13 @@
 const pipe = (...fns) => args => fns.reduce((total, fn) => fn(total), args);
 
+const addItem = item => obj => ({
+	...obj,
+	features: {
+		...obj.features,
+		items: obj.features.items.concat(item),
+	},
+});
+
 const canDie = obj => ({
 	...obj,
 	die: () => ({
@@ -27,7 +35,7 @@ const basic = () => {
 			head: 'bold',
 			clothes: 'suit',
 			complexion: 'regular',
-			object: 'none',
+			items: [],
 		},
 		health: 200,
 		speed: 1,
@@ -44,4 +52,8 @@ const createBasicZombie = pipe(
 
 module.exports = {
 	basic: createBasicZombie,
+	flag: pipe(
+		createBasicZombie,
+		addItem('flag'),
+	),
 };
