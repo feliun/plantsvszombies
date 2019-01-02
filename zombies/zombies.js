@@ -8,6 +8,21 @@ const addItem = item => obj => ({
 	},
 });
 
+const amendHealth = health => obj => ({
+	...obj,
+	health,
+});
+
+const amendFeature = feature => value => obj => ({
+	...obj,
+	features: {
+		...obj.features,
+		[feature]: value,
+	},
+});
+
+const amendHead = amendFeature('head');
+
 const canDie = obj => ({
 	...obj,
 	die: () => ({
@@ -29,6 +44,8 @@ const canEat = obj => ({
 	eat: plant => plant.bite(),
 });
 
+const trace = obj => console.log(JSON.stringify(obj)) || obj;
+
 const basic = () => {
 	const zombieData = {
 		features: {
@@ -43,17 +60,26 @@ const basic = () => {
 	return zombieData;
 };
 
-const createBasicZombie = pipe(
-	basic,
+const createBasicFeatures = pipe(
 	canDie,
 	canBeHarmed,
 	canEat,
 );
 
 module.exports = {
-	basic: createBasicZombie,
+	basic: pipe(
+		basic,
+		createBasicFeatures,
+	),
 	flag: pipe(
-		createBasicZombie,
+		basic,
 		addItem('flag'),
+		createBasicFeatures,
+	),
+	cone: pipe(
+		basic,
+		amendHealth(560),
+		amendHead('cone'),
+		createBasicFeatures,
 	),
 };
