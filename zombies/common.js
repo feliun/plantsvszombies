@@ -8,10 +8,12 @@ const addItem = item => obj => ({
 	},
 });
 
-const amendHealth = health => obj => ({
+const amendField = field => value => obj => ({
 	...obj,
-	health,
+	[field]: value,
 });
+
+const amendHealth = amendField('health');
 
 const amendFeature = feature => value => obj => ({
 	...obj,
@@ -67,19 +69,10 @@ const createBasicFeatures = pipe(
 );
 
 module.exports = {
-	basic: pipe(
-		basic,
-		createBasicFeatures,
-	),
-	flag: pipe(
-		basic,
-		addItem('flag'),
-		createBasicFeatures,
-	),
-	cone: pipe(
-		basic,
-		amendHealth(560),
-		amendHead('cone'),
-		createBasicFeatures,
-	),
+	basic,
+	createBasicFeatures,
+	pipe,
+	amendHealth,
+	amendHead,
+	addItem,
 };

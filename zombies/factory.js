@@ -1,4 +1,7 @@
-const zombies = require('./zombies');
+const { join } = require('path');
+const zombies = require('require-all')({
+	dirname: join(__dirname, 'types'),
+});
 
 module.exports = () => ({
 	create: (type, options = {}) => {
