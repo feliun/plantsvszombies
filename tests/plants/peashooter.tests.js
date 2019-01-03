@@ -1,5 +1,5 @@
 const expect = require('expect.js');
-const { create } = require('../../plants/factory')();
+const { create } = require('../../lib/plants/factory')();
 const createZombieSpy = require('../spies/zombie');
 
 describe('Peashooter plant features', () => {

@@ -1,5 +1,5 @@
 const expect = require('expect.js');
-const { create } = require('../../zombies/factory')();
+const { create } = require('../../lib/zombies/factory')();
 const createPlantSpy = require('../spies/plant');
 
 describe('Conehead zombie features', () => {
@@ -12,24 +12,19 @@ describe('Conehead zombie features', () => {
 	});
 
 	it('configures its basic parameters', () => {
-		expect(zombie.health).to.equal(560);
+		expect(zombie.toughness).to.equal(560);
 		expect(zombie.speed).to.equal(1);
-		expect(zombie.features).to.eql({
-			head: 'cone',
-			clothes: 'suit',
-			complexion: 'regular',
-			items: [],
-		});
+		expect(zombie.avatar).to.be.a('string');
 	});
 
 	it('can die', () => {
-		expect(zombie.health).to.equal(560);
-		expect(zombie.die().health).to.equal(0);
+		expect(zombie.toughness).to.equal(560);
+		expect(zombie.die().toughness).to.equal(0);
 	});
 
 	it('can be harmed', () => {
-		expect(zombie.health).to.equal(560);
-		expect(zombie.harm(20).health).to.equal(540);
+		expect(zombie.toughness).to.equal(560);
+		expect(zombie.harm(20).toughness).to.equal(540);
 	});
 
 	it('can eat a plant', () => {
