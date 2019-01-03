@@ -11,6 +11,7 @@ describe('Peashooter plant features', () => {
 	});
 
 	it('configures its basic parameters', () => {
+		expect(plant.id).to.be.a('string');
 		expect(plant.sun).to.equal(100);
 		expect(plant.toughness).to.equal(300);
 		expect(plant.recharge).to.equal(5);

@@ -12,6 +12,7 @@ describe('Basic zombie features', () => {
 	});
 
 	it('configures its basic parameters', () => {
+		expect(zombie.id).to.be.a('string');
 		expect(zombie.health).to.equal(200);
 		expect(zombie.speed).to.equal(1);
 		expect(zombie.features).to.eql({

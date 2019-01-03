@@ -1,3 +1,4 @@
+const createUUID = require('uuid/v1');
 const pipe = (...fns) => args => fns.reduce((total, fn) => fn(total), args);
 
 const addItem = item => obj => ({
@@ -48,19 +49,17 @@ const canEat = obj => ({
 
 const trace = obj => console.log(JSON.stringify(obj)) || obj;
 
-const basic = () => {
-	const zombieData = {
-		features: {
-			head: 'bold',
-			clothes: 'suit',
-			complexion: 'regular',
-			items: [],
-		},
-		health: 200,
-		speed: 1,
-	};
-	return zombieData;
-};
+const basic = () => ({
+	id: createUUID(),
+	features: {
+		head: 'bold',
+		clothes: 'suit',
+		complexion: 'regular',
+		items: [],
+	},
+	health: 200,
+	speed: 1,
+});
 
 const createBasicFeatures = pipe(
 	canDie,

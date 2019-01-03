@@ -1,3 +1,4 @@
+const createUUID = require('uuid/v1');
 const pipe = (...fns) => args => fns.reduce((total, fn) => fn(total), args);
 
 const amendField = field => value => obj => ({
@@ -22,6 +23,7 @@ const canShoot = obj => ({
 
 const basic = () => {
 	const plantData = {
+		id: createUUID(),
 		sun: 100,
 		toughness: 300,
 		recharge: 5,
