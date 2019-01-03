@@ -1,10 +1,10 @@
 const expect = require('expect.js');
 const { create } = require('../../lib/plants/factory')();
-const createZombieSpy = require('../spies/zombie');
+const createHarmSpy = require('../spies/harm');
 
 describe('Peashooter plant features', () => {
 	let plant;
-	let zombieSpy = createZombieSpy();
+	let harmSpy = createHarmSpy();
 
 	beforeEach(() => {
 		plant = create('peashooter');
@@ -23,16 +23,16 @@ describe('Peashooter plant features', () => {
 		);
 	});
 
-	it('can be harmed', () => {
+	it('can suffer', () => {
 		expect(plant.toughness).to.equal(300);
-		expect(plant.harm(20).toughness).to.equal(280);
+		expect(plant.suffer(20).toughness).to.equal(280);
 	});
 
-	it('can shoot', () => {
-		expect(zombieSpy.shootsLength()).to.equal(0);
-		plant.shoot(zombieSpy);
-		expect(zombieSpy.shootsLength()).to.equal(1);
-		const [shot] = zombieSpy.getShoot(0);
+	it('can harm', () => {
+		expect(harmSpy.woundsLength()).to.equal(0);
+		plant.harm(harmSpy);
+		expect(harmSpy.woundsLength()).to.equal(1);
+		const shot = harmSpy.getWound(0);
 		expect(shot).to.equal(plant.damage);
 	});
 });
